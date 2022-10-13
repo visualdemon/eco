@@ -21,5 +21,5 @@
 </html>
 
 <?php 
-
+  echo 'esto está corriendo por el momento';
 ?>
