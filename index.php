@@ -22,7 +22,9 @@
 </html>
 
 <?php 
-  echo 'esto está corriendo por el momento';
+  echo 'esto está corriendo por el momento'; 
+
+  /* COmntarios que salio en la madrugada */
 
 
 ?>
