@@ -8,6 +8,7 @@
 </head>
 <body>
     <h3>Registros</h3>
+    <p>Esta iniciativa es para proteger el medio ambiente</p>
     <table border="1" width="80%" cellspacing="0"> 
         <tr>
             <td>Cliente</td>
@@ -22,4 +23,6 @@
 
 <?php 
   echo 'esto está corriendo por el momento';
+
+
 ?>
