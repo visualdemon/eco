@@ -21,8 +21,4 @@ SELECT nombre, cliente, correos_eliminados, espacio_liberado, fecha FROM aporte
 INNER JOIN usuario
 WHERE aporte.id_usuario=usuario.id_usuario AND aporte.id_usuario=2;
 
-SELECT cliente, correos_eliminados, espacio_libreado, fecha FROM ecoapp.aporte;
-
-
-
 
