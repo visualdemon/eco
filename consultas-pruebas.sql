@@ -23,6 +23,8 @@ WHERE aporte.id_usuario=usuario.id_usuario AND aporte.id_usuario=2;
 
 SELECT cliente, correos_eliminados, espacio_libreado, fecha FROM ecoapp.aporte;
 
+INSERT INTO `ecoapp`.`aporte` (`cliente`, `correos_eliminados`, `espacio_liberado`, `id_usuario`, `fecha`) VALUES ('Cloud', '12', '250', '2',  CURRENT_TIMESTAMP());
+
 
 
 

@@ -20,6 +20,7 @@
 <body>
     <h3>Registros</h3>
     <p>Esta iniciativa es para proteger el medio ambiente</p>
+    
     <table border="1" width="80%" cellspacing="0"> 
         <tr>
             <td>ID Cliente</td>
@@ -32,19 +33,26 @@
 
         <?php
 
+            $total_aporte = 0;
+            
+
             foreach ($aportes as $dato) {
         
         ?>
             <tr>
-                <td><?php echo $dato->cliente?> </td> , 
+                <td><?php echo $dato->cliente?> </td> 
                 <td><?php echo $dato->correos_eliminados?></td>
                 <td><?php echo $dato->espacio_liberado?></td>
                 <td><?php echo $dato->fecha?></td>
                 <td><i class="fa-regular fa-pen-to-square"></i></td>
                 <td><i class="fa-solid fa-trash"></i></td>
             </tr>
+
+                
                 
                 <?php
+                $espacio_liberado = $dato->espacio_liberado;
+                $total_aporte = $total_aporte + $espacio_liberado;
             }
                 ?>
  
@@ -52,7 +60,11 @@
     </table>
 
     <h1>Usuario: <?php echo $dato->id_usuario?></h1>
-    <h3>Has contribuido con el medio ambiente en: </h3>
+    <h3>Hasta el momento has eliminado un total de: <?php echo $total_aporte?> Mb</h3>
+    <h4>Energía Ahorrada:  <?php echo ($total_aporte/1024)* 6.536 ?> KWh</h4>
+    <h4>Emisiones CO2: <?php echo (($total_aporte/1024)* 831)/1000000 ?> ppm</h4>
+    <h4>Ahorro en dólares: $ <?php echo ($total_aporte/1024)* 0.1245398 ?></h4>
+    <h4>Equivale a tener encendidos: <?php echo ($total_aporte/1024)* 0.145 ?> Bombillas led</h4>
 
 </body>
 </html>
