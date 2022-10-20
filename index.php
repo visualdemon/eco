@@ -1,8 +1,9 @@
 <?php 
+    
     include_once 'model/conexion.php';
 
 
-    $sentencia = $bd->query("SELECT * FROM ecoapp.aporte WHERE id_usuario = 2;");
+    $sentencia = $bd->query("select * FROM ecoapp.aporte INNER join ecoapp.usuario WHERE aporte.id_usuario=usuario.id_usuario and aporte.id_usuario = 1;");
     $aportes = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($aportes);
 
@@ -44,8 +45,8 @@
                 <td><?php echo $dato->correos_eliminados?></td>
                 <td><?php echo $dato->espacio_liberado?></td>
                 <td><?php echo $dato->fecha?></td>
-                <td><i class="fa-regular fa-pen-to-square"></i></td>
-                <td><i class="fa-solid fa-trash"></i></td>
+                <td><a href="#" rel="noopener noreferrer"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="#" rel="noopener noreferrer"><i class="fa-solid fa-trash"></i></a></td>
             </tr>
 
                 
@@ -59,7 +60,7 @@
 
     </table>
 
-    <h1>Usuario: <?php echo $dato->id_usuario?></h1>
+    <h1>Usuario: <?php echo $dato->nombre?></h1>
     <h3>Hasta el momento has eliminado un total de: <?php echo $total_aporte?> Mb</h3>
     <h4>Energía Ahorrada:  <?php echo ($total_aporte/1024)* 6.536 ?> KWh</h4>
     <h4>Emisiones CO2: <?php echo (($total_aporte/1024)* 831)/1000000 ?> ppm</h4>

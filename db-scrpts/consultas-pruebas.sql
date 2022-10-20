@@ -21,4 +21,11 @@ SELECT nombre, cliente, correos_eliminados, espacio_liberado, fecha FROM aporte
 INNER JOIN usuario
 WHERE aporte.id_usuario=usuario.id_usuario AND aporte.id_usuario=2;
 
+SELECT cliente, correos_eliminados, espacio_libreado, fecha FROM ecoapp.aporte;
+
+INSERT INTO `ecoapp`.`aporte` (`cliente`, `correos_eliminados`, `espacio_liberado`, `id_usuario`, `fecha`) VALUES ('Cloud', '12', '250', '2',  CURRENT_TIMESTAMP());
+
+INSERT INTO `ecoapp`.`aporte` (`cliente`, `correos_eliminados`, `espacio_liberado`, `id_usuario`, `fecha`) VALUES ('iCloud', '295', '8192', '1',  CURRENT_TIMESTAMP());
+
+INSERT INTO `ecoapp`.`aporte` (`cliente`, `correos_eliminados`, `espacio_liberado`, `id_usuario`, `fecha`) VALUES ('Google Fotos', '400', '10240', '1',  CURRENT_TIMESTAMP());
 
