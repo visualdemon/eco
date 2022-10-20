@@ -62,10 +62,10 @@
 
     <h1>Usuario: <?php echo $dato->nombre?></h1>
     <h3>Hasta el momento has eliminado un total de: <?php echo $total_aporte?> Mb</h3>
-    <h4>Energía Ahorrada:  <?php echo ($total_aporte/1024)* 6.536 ?> KWh</h4>
-    <h4>Emisiones CO2: <?php echo (($total_aporte/1024)* 831)/1000000 ?> ppm</h4>
-    <h4>Ahorro en dólares: $ <?php echo ($total_aporte/1024)* 0.1245398 ?></h4>
-    <h4>Equivale a tener encendidos: <?php echo ($total_aporte/1024)* 0.145 ?> Bombillas led</h4>
+    <h4>Energía Ahorrada:  <?php echo number_format(($total_aporte/1024)* 6.536,2) ?> KWh</h4>
+    <h4>Emisiones CO2: <?php echo number_format((($total_aporte/1024)* 831)/1000000 , 4) ?> ppm</h4>
+    <h4>Ahorro en dólares: $ <?php echo number_format(($total_aporte/1024)* 0.1245398,2 )?></h4>
+    <h4>Equivale a tener encendidos: <?php echo number_format(($total_aporte/1024)* 0.145,2 )?> Bombillas led</h4>
 
 </body>
 </html>
