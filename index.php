@@ -2,6 +2,7 @@
     
     include_once 'model/conexion.php';
 
+    // Se hace consulta a base de datos con iner para sacar el nombre del usuario 
 
     $sentencia = $bd->query("select * FROM ecoapp.aporte INNER join ecoapp.usuario WHERE aporte.id_usuario=usuario.id_usuario and aporte.id_usuario = 1;");
     $aportes = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -19,12 +20,15 @@
     <title>Un Click Por Mi Planeta</title>
 </head>
 <body>
-    <h3>Registros</h3>
+    <h1>Registros</h1>
     <p>Esta iniciativa es para proteger el medio ambiente</p>
-    
+
+    <!-- foreach para llamr nombre del usuario de la base de datos -->
+    <h3>Usuario: <?php foreach ($aportes as $nombre); echo ($nombre->nombre);?></h3>
+
     <table border="1" width="80%" cellspacing="0"> 
         <tr>
-            <td>ID Cliente</td>
+            <td>Cliente de almacenamiento</td>
             <td>Emails o Archivos eliminados</td>
             <td>Espacio liberado En Mbs.</td>
             <td>Fecha de registro</td>
@@ -32,40 +36,75 @@
             <td>Eliminar</td>
         </tr>
 
-        <?php
+        <!-- otro foreach para ciclo de pedir datos de la bd -->
 
-            $total_aporte = 0;
+        <?php
+            // se declara esta para hacer la sumatoria de los datos
+            $total_aporte = 0; 
             
 
             foreach ($aportes as $dato) {
-        
+                      
         ?>
+            
             <tr>
                 <td><?php echo $dato->cliente?> </td> 
                 <td><?php echo $dato->correos_eliminados?></td>
                 <td><?php echo $dato->espacio_liberado?></td>
                 <td><?php echo $dato->fecha?></td>
-                <td><a href="#" rel="noopener noreferrer"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="editar.php?id=<?php echo $dato->id_aporte?>" rel="noopener noreferrer"><i class="fa-regular fa-pen-to-square"></i></a></td>
                 <td><a href="#" rel="noopener noreferrer"><i class="fa-solid fa-trash"></i></a></td>
             </tr>
 
                 
                 
                 <?php
-                $espacio_liberado = $dato->espacio_liberado;
-                $total_aporte = $total_aporte + $espacio_liberado;
+                $id_usuario = $dato->id_usuario; // se inicia variable para hacer el registro en insertar
+                $espacio_liberado = $dato->espacio_liberado; // se declara espacio liberado para operaciones 
+                $total_aporte = $total_aporte + $espacio_liberado; //el espacio liberado se suma para sacar el total
             }
                 ?>
  
 
     </table>
-
-    <h1>Usuario: <?php echo $dato->nombre?></h1>
+    
+    <!-- se hace las operaciones -->
     <h3>Hasta el momento has eliminado un total de: <?php echo $total_aporte?> Mb</h3>
-    <h4>Energía Ahorrada:  <?php echo number_format(($total_aporte/1024)* 6.536,2) ?> KWh</h4>
-    <h4>Emisiones CO2: <?php echo number_format((($total_aporte/1024)* 831)/1000000 , 4) ?> ppm</h4>
-    <h4>Ahorro en dólares: $ <?php echo number_format(($total_aporte/1024)* 0.1245398,2 )?></h4>
-    <h4>Equivale a tener encendidos: <?php echo number_format(($total_aporte/1024)* 0.145,2 )?> Bombillas led</h4>
+    <p>Energía Ahorrada:  <?php echo number_format(($total_aporte/1024)* 6.536,2) ?> KWh</p>
+    <p>Emisiones CO2: <?php echo number_format((($total_aporte/1024)* 831)/1000000 , 4) ?> ppm</p>
+    <p>Ahorro en dólares: $ <?php echo number_format(($total_aporte/1024)* 0.1245398,2 )?></p>
+    <p>Equivale a tener encendidos: <?php echo number_format(($total_aporte/1024)* 0.145,2 )?> Bombillas led</p>
+
+
+    <h1>Nuevo registro</h1>
+    <form method="POST" action="insertar.php">
+            <table>
+                <tr>    
+                    <td>Cliente</td>
+                    <td><input type="text" name="txtCliente"></td>
+                </tr>
+                <tr>
+                    <td>Emails o Archivos eliminados</td>
+                    <td><input type="text" name="txtCoreosEliminados"></td>
+                </tr>
+                <tr>
+                    <td>Espacio liberado En Mbs.</td>
+                    <td><input type="text" name="txtEspacioLiberado">
+                </tr>
+                
+                <input type="hidden" name="txtIdUsuario" value="<?php echo($id_usuario);// datos oculros para generar la consulta?>">
+                <input type="hidden" name="oculto" value="1">
+
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="INGRESAR REGISTRO"></td>
+                    
+                </tr>
+
+            </table>
+        </form>
+
+    
 
 </body>
 </html>
