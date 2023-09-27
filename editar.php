@@ -1,17 +1,16 @@
 <?php
-    include_once 'model/conexion.php';
+include_once 'model/conexion.php';
 
-    if (!isset($_GET['id'])) {
-        header('location: index.php'); 
-    }
+if (!isset($_GET['id'])) {
+    header('location: index.php');
+    exit();
+}
 
-    $id_aporte=$_GET['id'];
+$id_aporte = $_GET['id'];
 
-    $sentencia = $bd->prepare("SELECT * FROM ecoapp.aporte WHERE id_aporte = ?;");
-    $sentencia->execute([$id_aporte]);
-    $aporte = $sentencia->fetch(PDO::FETCH_OBJ);
-    print_r($aporte);
-
+$sentencia = $bd->prepare("SELECT * FROM ecoapp.aporte WHERE id_aporte = ?;");
+$sentencia->execute([$id_aporte]);
+$aporte = $sentencia->fetch(PDO::FETCH_OBJ);
 ?>
 
 <!DOCTYPE html>
@@ -28,28 +27,25 @@
             <table>
                 <tr>    
                     <td>Cliente</td>
-                    <td><input type="text" name="txtCliente"></td>
+                    <td><input type="text" name="txtCliente" value="<?php echo $aporte->cliente; ?>"></td>
                 </tr>
                 <tr>
                     <td>Emails o Archivos eliminados</td>
-                    <td><input type="text" name="txtCoreosEliminados"></td>
+                    <td><input type="text" name="txtCorreosEliminados" value="<?php echo $aporte->correos_eliminados; ?>"></td>
                 </tr>
                 <tr>
                     <td>Espacio liberado En Mbs.</td>
-                    <td><input type="text" name="txtEspacioLiberado">
+                    <td><input type="text" name="txtEspacioLiberado" value="<?php echo $aporte->espacio_liberado; ?>">
                 </tr>
-                
-                <!-- <input type="hidden" name="txtIdUsuario" value="<?php echo($id_usuario);?>"> -->
+
+                <input type="hidden" name="id_aporte" value="<?php echo $aporte->id_aporte; ?>">
                 <input type="hidden" name="oculto" value="1">
 
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="INGRESAR REGISTRO"></td>
-                    
+                    <td><input type="submit" value="ACTUALIZAR REGISTRO"></td>
                 </tr>
-
             </table>
         </form>
-    
 </body>
 </html>

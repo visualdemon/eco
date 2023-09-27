@@ -1,0 +1,50 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos del encabezado */
+h1 {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos para los botones de editar y eliminar */
+.fa-regular, .fa-solid {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Estilos para los cálculos y el formulario */
+h3, p {
+    text-align: center;
+    margin: 10px;
+}
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Agrega aquí más reglas CSS según tus necesidades */
